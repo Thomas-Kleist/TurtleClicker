@@ -1,0 +1,11 @@
+{
+"TOTAL_MEMORY": 268435456,
+"dataUrl": "Turlte Clicker.data.unityweb",
+"asmCodeUrl": "Turlte Clicker.asm.code.unityweb",
+"asmMemoryUrl": "Turlte Clicker.asm.memory.unityweb",
+"asmFrameworkUrl": "Turlte Clicker.asm.framework.unityweb",
+"graphicsAPI": ["WebGL 2.0", "WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20"
+}

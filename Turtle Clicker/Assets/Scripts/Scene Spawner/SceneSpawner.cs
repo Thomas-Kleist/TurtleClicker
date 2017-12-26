@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SceneSpawner : MonoBehaviour
 {
-    
     public void Start()
     {
         GameObject Camera = GameObject.Instantiate((GameObject)Resources.Load("Camera/Camera"));
