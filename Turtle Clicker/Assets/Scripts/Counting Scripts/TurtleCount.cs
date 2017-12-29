@@ -5,13 +5,17 @@ using UnityEngine;
 public class TurtleCount : MonoBehaviour
 {
     private float turtles = 0;
+    private float doctor = 0;
+    private float doctorPrice = 15;
+    private float doctorProduction = 0.2f;
     private float singleTurtleTanks = 0;
-    private float singleTurtleTankPrice = 20;
+    private float singleTurtleTankPrice = 100;
     private float singleTurtleTankProduction = 1;
     private float TPS = 0;
     private void Start()
     {
         StartCoroutine(AddFromStt());
+        StartCoroutine(AddFromDoctor());
     }
     public float GetAmount()
     {
@@ -54,11 +58,30 @@ public class TurtleCount : MonoBehaviour
         singleTurtleTankPrice += amount;
         singleTurtleTankPrice = Mathf.RoundToInt(singleTurtleTankPrice);
     }
+    public float GetAmountOfDoctors()
+    {
+        return doctor;
+    }
+    public void AddDoctor(float amount = 1f)
+    {
+        doctor += amount;
+        doctor = Mathf.RoundToInt(doctor);
+        SetTPS();
+    }
+    public float GetPriceOfDoctor()
+    {
+        return doctorPrice;
+    }
+    public void AddPriceOfDoctor(float amount = 1)
+    {
+        doctorPrice += amount;
+        doctorPrice = Mathf.RoundToInt(doctorPrice);
+    }
     private void SetTPS()
     {
         TPS = 0;
         TPS += singleTurtleTankProduction * singleTurtleTanks;
-        singleTurtleTanks = Mathf.RoundToInt(singleTurtleTanks);
+        TPS += doctorProduction * doctor;
     }
     public float GetTPS()
     {
@@ -73,6 +96,25 @@ public class TurtleCount : MonoBehaviour
                 turtles += singleTurtleTankProduction;
                 yield return new WaitForSeconds(1 / singleTurtleTanks);
             } else yield return new WaitForSeconds(1);
+        }
+    }
+    private IEnumerator AddFromDoctor()
+    {
+        while (1 == 1)
+        {
+            if (doctor != 0)
+            {
+                if (doctorProduction < 1)
+                {
+                    turtles += 1;
+                    yield return new WaitForSeconds((1 / doctorProduction) / doctor);
+                } else
+                {
+                    turtles += doctorProduction;
+                    yield return new WaitForSeconds(1 / doctor);
+                }
+            }
+            else yield return new WaitForSeconds(1);
         }
     }
 }
